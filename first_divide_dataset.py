@@ -3,7 +3,7 @@ import torchvision.transforms as transforms
 import GroupDataset
 
 
-def divide_dataset(groups):
+def first_divide_dataset(groups):
 
     transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
 

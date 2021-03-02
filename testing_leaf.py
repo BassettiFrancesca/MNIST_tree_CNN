@@ -6,7 +6,7 @@ def test(test_set, PATH):
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-    classes = ('0', '1')
+    classes = (test_set.groups[0][0], test_set.groups[1][0])
 
     batch_size = 4
     num_workers = 2
@@ -38,6 +38,6 @@ def test(test_set, PATH):
 
     for i in range(2):
         acc = 100 * n_class_correct[i] / n_class_samples[i]
-        print('Accuracy of %s: %.3f %%' % (classes[i], acc))
+        print(f'Accuracy of {classes[i]}: %.3f %%' % acc)
 
     print('Accuracy of the network on the test images: %.3f %%' % (100 * correct / total))

@@ -4,14 +4,13 @@ import torch.nn as nn
 import CNN
 
 
-def train(train_set, PATH):
+def train(train_set, PATH, num_epochs):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     batch_size = 4
     num_workers = 2
     learning_rate = 0.001
     momentum = 0.9
-    num_epochs = 1
 
     net = CNN.Net().to(device)
 

@@ -1,12 +1,15 @@
 import torch
 import training_node
 import training_leaf
+import testing_node
+import testing_leaf
 import CNN
 
 
 class Node:
-    def __init__(self, data_set, left_child, right_child, PATH, leaf):
+    def __init__(self, data_set, test_set, left_child, right_child, PATH, leaf):
         self.data_set = data_set
+        self.test_set = test_set
         self.left_child = left_child
         self.right_child = right_child
         self.PATH = PATH
@@ -16,10 +19,13 @@ class Node:
         if not self.leaf:
             training_node.train(self, num_epochs)
         elif self.leaf:
-            training_leaf.train(self.data_set, self.PATH)
+            training_leaf.train(self.data_set, self.PATH, num_epochs)
 
     def test(self):
-        print('do')
+        if not self.leaf:
+            testing_node.test(self.test_set, self)
+        elif self.leaf:
+            testing_leaf.test(self.test_set, self.PATH)
 
     def get_predicted(self, image):
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
