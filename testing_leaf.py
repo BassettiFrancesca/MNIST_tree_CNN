@@ -5,6 +5,7 @@ import CNN
 def test(test_set, PATH):
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    device = 'cpu'
 
     classes = (test_set.groups[0][0], test_set.groups[1][0])
 

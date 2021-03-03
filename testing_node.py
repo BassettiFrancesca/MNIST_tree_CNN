@@ -2,9 +2,11 @@ import torch
 import CNN
 
 
-def test(test_set, node):
+def test(node):
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+    test_loader = torch.utils.data.DataLoader(node.test_set, shuffle=False, num_workers=2)
 
     net = CNN.Net().to(device)
     net.load_state_dict(torch.load(node.PATH))
@@ -19,8 +21,7 @@ def test(test_set, node):
     total = 0
 
     with torch.no_grad():
-        for i in range(len(test_set)):
-            (image, label) = test_set.get_item(i)
+        for (image, label) in test_loader:
             image = image.to(device)
             label = label.to(device)
             outputs = net(image)

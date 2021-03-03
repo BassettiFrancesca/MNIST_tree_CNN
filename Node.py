@@ -23,7 +23,7 @@ class Node:
 
     def test(self):
         if not self.leaf:
-            testing_node.test(self.test_set, self)
+            testing_node.test(self)
         elif self.leaf:
             testing_leaf.test(self.test_set, self.PATH)
 
@@ -33,10 +33,11 @@ class Node:
         node_net.load_state_dict(torch.load(self.PATH))
         node_output = node_net(image)
         _, node_predicted = torch.max(node_output.data, 1)
+
         if self.leaf:
             node_predicted[0] = self.data_set.groups[node_predicted[0]][0]
             return node_predicted
         elif node_predicted[0] == 0:
-            self.left_child.get_predicted(image)
+            return self.left_child.get_predicted(image)
         elif node_predicted[0] == 1:
-            self.right_child.get_predicted(image)
+            return self.right_child.get_predicted(image)

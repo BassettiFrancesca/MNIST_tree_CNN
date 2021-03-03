@@ -13,8 +13,5 @@ class GroupDataset(Dataset):
             if y in group:
                 return x, c
 
-    def get_item(self, idx):
-        return self._dataset[idx]
-
     def __len__(self):
         return len(self._dataset)
