@@ -27,7 +27,7 @@ def prepare_leaf_dataset(groups):
 
     train_node_dataset = GroupDataset.GroupDataset(node_dataset, groups)
 
-    print(f'Size node_dataset: {len(train_node_dataset)}')
+    print(f'Size node_dataset {groups}: {len(train_node_dataset)}')
 
     test_indices = []
 
@@ -40,6 +40,6 @@ def prepare_leaf_dataset(groups):
 
     test_new_dataset = GroupDataset.GroupDataset(test_data_set, groups)
 
-    print(f'Size test_new_dataset: {len(test_new_dataset)}')
+    print(f'Size test_new_dataset {groups}: {len(test_new_dataset)}\n')
 
     return train_node_dataset, test_new_dataset

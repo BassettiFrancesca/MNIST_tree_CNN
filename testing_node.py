@@ -11,12 +11,6 @@ def test(node):
     net = CNN.Net().to(device)
     net.load_state_dict(torch.load(node.PATH))
 
-    left_net = CNN.Net().to(device)
-    left_net.load_state_dict(torch.load(node.left_child.PATH))
-
-    right_net = CNN.Net().to(device)
-    right_net.load_state_dict(torch.load(node.right_child.PATH))
-
     correct = 0
     total = 0
 
@@ -33,4 +27,4 @@ def test(node):
             total += label.size(0)
             correct += (leaf_predicted == label).sum().item()
 
-    print('Accuracy of the network on the test images: %.3f %%' % (100 * correct / total))
+    print(f'Accuracy of {node.PATH} on the test images: %.3f %%\n' % (100 * correct / total))

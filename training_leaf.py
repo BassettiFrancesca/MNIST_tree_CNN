@@ -31,7 +31,7 @@ def train(train_set, PATH, num_epochs):
             loss.backward()
             optimizer.step()
 
-    print(f'Finished Training {PATH}')
+    print(f'Finished Training {PATH}\n')
 
     torch.save(net.state_dict(), PATH)
 

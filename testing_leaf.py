@@ -5,7 +5,6 @@ import CNN
 def test(test_set, PATH):
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    device = 'cpu'
 
     classes = (test_set.groups[0][0], test_set.groups[1][0])
 
@@ -39,6 +38,6 @@ def test(test_set, PATH):
 
     for i in range(2):
         acc = 100 * n_class_correct[i] / n_class_samples[i]
-        print(f'Accuracy of {classes[i]}: %.3f %%' % acc)
+        print(f'Accuracy of {classes[i]} in {PATH}: %.3f %%' % acc)
 
-    print('Accuracy of the network on the test images: %.3f %%' % (100 * correct / total))
+    print(f'Accuracy of {PATH} on the test images: %.3f %%\n' % (100 * correct / total))

@@ -15,12 +15,6 @@ def train(node, num_epochs):
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=momentum)
 
-    left_net = CNN.Net().to(device)
-    left_net.load_state_dict(torch.load(node.left_child.PATH))
-
-    right_net = CNN.Net().to(device)
-    right_net.load_state_dict(torch.load(node.right_child.PATH))
-
     left = 0
     right = 0
     dcw = 0
@@ -68,12 +62,11 @@ def train(node, num_epochs):
                 if label[0] != left_predicted[0] and label[0] != right_predicted[0]:
                     dcw += 1
         node.data_set = torch.utils.data.Subset(node.data_set, l_r_indices)
-        print(f'N° indices: {len(l_r_indices)}')
-    print(f'N° indices: {len(l_r_indices)}')
     print(f'Finished Training {node.PATH}')
+    print(f'N° indices: {len(l_r_indices)}')
     print(f'Right: {right}')
     print(f'Left: {left}')
     print(f'DontCareWrong: {dcw}')
-    print(f'DontCareRight: {dcr}')
+    print(f'DontCareRight: {dcr}\n')
 
     torch.save(net.state_dict(), node.PATH)
