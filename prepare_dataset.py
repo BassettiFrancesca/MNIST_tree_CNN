@@ -30,6 +30,6 @@ def prepare_dataset(group):
 
     test_dataset = torch.utils.data.Subset(test_set, test_indices)
 
-    print(f'Size test_new_dataset {group}: {len(test_dataset)}\n')
+    print(f'Size test_node_dataset {group}: {len(test_dataset)}\n')
 
     return train_dataset, test_dataset
