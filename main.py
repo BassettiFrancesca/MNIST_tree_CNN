@@ -15,13 +15,13 @@ def tree():
                   './leaf9_net.pth', './leaf10_net.pth', './leaf11_net.pth', './leaf12_net.pth',
                   './leaf13_net.pth', './leaf14_net.pth', './leaf15_net.pth', './leaf16_net.pth']
 
-    leafs = []
+    leaves = []
 
     for i, leaf_group in enumerate(leaf_groups):
         (leaf_train_set, leaf_test_set) = prepare_leaf_dataset.prepare_leaf_dataset(leaf_group)
-        leafs.append(Node.Node(leaf_train_set, leaf_test_set, None, None, leaf_PATHS[i], True))
+        leaves.append(Node.Node(leaf_train_set, leaf_test_set, None, None, leaf_PATHS[i], True))
 
-    for leaf in leafs:
+    for leaf in leaves:
         leaf.train(2)
         leaf.test()
 
@@ -46,14 +46,14 @@ def tree():
     train_sets.reverse()
     test_sets.reverse()
     PATHS.reverse()
-    leafs.reverse()
+    leaves.reverse()
 
     nodes = []
 
     i = 0
 
-    for j in range(0, len(leafs), 2):
-        nodes.append(Node.Node(train_sets[i], test_sets[i], leafs[j + 1], leafs[j], PATHS[i], False))
+    for j in range(0, len(leaves), 2):
+        nodes.append(Node.Node(train_sets[i], test_sets[i], leaves[j + 1], leaves[j], PATHS[i], False))
         i += 1
 
     l = 0
