@@ -62,6 +62,7 @@ def train(node, num_epochs):
                 if label[0] != left_predicted[0] and label[0] != right_predicted[0]:
                     dcw += 1
         node.data_set = torch.utils.data.Subset(node.data_set, l_r_indices)
+
     print(f'Finished Training {node.PATH}')
     print(f'N° indices: {len(l_r_indices)}')
     print(f'Right: {right}')
