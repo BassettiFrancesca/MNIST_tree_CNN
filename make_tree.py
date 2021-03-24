@@ -6,7 +6,7 @@ import Node
 import time
 
 
-def make_tree(num_epochs, leaf_groups, node_groups):
+def make_tree(num_epochs_l, num_epochs_n, leaf_groups, node_groups):
 
     start = time.time()
 
@@ -21,9 +21,11 @@ def make_tree(num_epochs, leaf_groups, node_groups):
         (leaf_train_set, leaf_test_set) = prepare_leaf_dataset.prepare_leaf_dataset(leaf_group)
         leaves.append(Node.Node(leaf_train_set, leaf_test_set, None, None, leaf_PATHS[i], True))
 
+    acc_leaves = []
+
     for leaf in leaves:
-        leaf.train(num_epochs)
-        leaf.test()
+        leaf.train(num_epochs_l)
+        acc_leaves.append(leaf.test())
 
     train_sets = []
     test_sets = []
@@ -60,12 +62,16 @@ def make_tree(num_epochs, leaf_groups, node_groups):
         nodes.append(Node.Node(train_sets[k], test_sets[k], nodes[l + 1], nodes[l], node_PATHS[k], False))
         l += 2
 
+    acc_nodes = []
+
     for node in nodes:
-        node.train(num_epochs)
-        node.test()
+        node.train(num_epochs_n)
+        acc_nodes.append(node.test())
 
     end = time.time()
 
     print(f'Seconds passed: {end - start}')
     print(f'Minutes passed: {(end - start) / 60}')
-    print(f'Hours passed: {(end - start) / 3600}')
+    print(f'Hours passed: {(end - start) / 3600}\n')
+
+    return acc_leaves, acc_nodes

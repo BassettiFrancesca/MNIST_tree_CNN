@@ -41,3 +41,4 @@ def test(test_set, PATH):
         print(f'Accuracy of {classes[i]} in {PATH}: %.3f %%' % acc)
 
     print(f'Accuracy of {PATH} on the test images: %.3f %%\n' % (100 * correct / total))
+    return 100 * correct / total

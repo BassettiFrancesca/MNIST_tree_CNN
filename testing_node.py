@@ -28,3 +28,4 @@ def test(node):
             correct += (leaf_predicted == label).sum().item()
 
     print(f'Accuracy of {node.PATH} on the test images: %.3f %%\n' % (100 * correct / total))
+    return 100 * correct / total

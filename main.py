@@ -2,14 +2,46 @@ import make_tree
 
 
 def main():
-    num_epochs = 2
+    num_epochs_l = 4
 
-    leaf_groups = [[[0], [5]], [[4], [6]], [[1], [2]], [[3], [7]], [[0], [6]], [[1], [4]], [[2], [7]], [[3], [5]]]
+    num_epochs_n = 4
 
-    node_groups = [[0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 7], [0, 1, 2, 3, 4, 5, 6, 7],
-                   [0, 4, 5, 6], [1, 2, 3, 7], [0, 1, 4, 6], [2, 3, 5, 7]]
+    leaf_groups = [[[2], [3]], [[2], [3]]]
 
-    make_tree.make_tree(num_epochs, leaf_groups, node_groups)
+    node_groups = [[2, 3]]
+
+    acc_leaves = []
+    acc_nodes = []
+    acc_trees = []
+
+    for i in range(10):
+        (a_l, a_n) = make_tree.make_tree(num_epochs_l, num_epochs_n, leaf_groups, node_groups)
+        acc_trees.append(a_n[len(a_n) - 1])
+        for j in a_n:
+            acc_nodes.append(j)
+        for k in a_l:
+            acc_leaves.append(k)
+
+    print(f'Accuracy of the leaves with {num_epochs_l} epochs: {acc_leaves}')
+    total = 0
+    for i in acc_leaves:
+        total += i
+    mean = total / len(acc_leaves)
+    print(f'Mean: {mean}\n')
+
+    print(f'Accuracy of the nodes with {num_epochs_n} epochs: {acc_nodes}')
+    total = 0
+    for i in acc_nodes:
+        total += i
+    mean = total / len(acc_nodes)
+    print(f'Mean: {mean}\n')
+
+    print(f'Accuracy of the trees: {acc_trees}')
+    total = 0
+    for i in acc_trees:
+        total += i
+    mean = total / len(acc_trees)
+    print(f'Mean: {mean}\n')
 
 
 if __name__ == '__main__':

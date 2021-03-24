@@ -23,9 +23,9 @@ class Node:
 
     def test(self):
         if not self.leaf:
-            testing_node.test(self)
+            return testing_node.test(self)
         elif self.leaf:
-            testing_leaf.test(self.test_set, self.PATH)
+            return testing_leaf.test(self.test_set, self.PATH)
 
     def get_predicted(self, image):
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
