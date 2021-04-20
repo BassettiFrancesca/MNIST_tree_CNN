@@ -29,9 +29,9 @@ def make_tree(num_epochs_l, num_epochs_n, leaf_groups, node_groups):
 
     train_sets = []
     test_sets = []
-    #  transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
-    #  train_sets.append(torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform))
-    #  test_sets.append(torchvision.datasets.MNIST(root='./data', train=False, download=True, transform=transform))
+    transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
+    train_sets.append(torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform))
+    test_sets.append(torchvision.datasets.MNIST(root='./data', train=False, download=True, transform=transform))
 
     for group in node_groups:
         (train_set, test_set) = prepare_dataset.prepare_dataset(group)
@@ -40,7 +40,7 @@ def make_tree(num_epochs_l, num_epochs_n, leaf_groups, node_groups):
 
     node_PATHS = []
 
-    for i in range(len(node_groups)):
+    for i in range(len(train_sets)):
         node_PATHS.append('./PATHS/node' + str(i + 1) + '_net.pth')
 
     train_sets.reverse()

@@ -21,11 +21,11 @@ def prepare_leaf_dataset(groups):
             if label[0] in groups[j]:
                 indices.append(i)
 
-    node_dataset = torch.utils.data.Subset(train_set, indices)
+    leaf_dataset = torch.utils.data.Subset(train_set, indices)
 
-    train_node_dataset = GroupDataset.GroupDataset(node_dataset, groups)
+    train_leaf_dataset = GroupDataset.GroupDataset(leaf_dataset, groups)
 
-    print(f'Size leaf_dataset {groups}: {len(train_node_dataset)}')
+    print(f'Size leaf_dataset {groups}: {len(train_leaf_dataset)}')
 
     test_indices = []
 
@@ -34,10 +34,10 @@ def prepare_leaf_dataset(groups):
             if label[0] in groups[j]:
                 test_indices.append(i)
 
-    test_data_set = torch.utils.data.Subset(test_set, test_indices)
+    test_dataset = torch.utils.data.Subset(test_set, test_indices)
 
-    test_node_dataset = GroupDataset.GroupDataset(test_data_set, groups)
+    test_leaf_dataset = GroupDataset.GroupDataset(test_dataset, groups)
 
-    print(f'Size test_leaf_dataset {groups}: {len(test_node_dataset)}\n')
+    print(f'Size test_leaf_dataset {groups}: {len(test_leaf_dataset)}\n')
 
-    return train_node_dataset, test_node_dataset
+    return train_leaf_dataset, test_leaf_dataset
