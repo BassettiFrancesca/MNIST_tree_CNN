@@ -3,7 +3,7 @@ import training_node
 import training_leaf
 import testing_node
 import testing_leaf
-import CNN
+import CNN1
 
 
 class Node:
@@ -29,7 +29,7 @@ class Node:
 
     def get_predicted(self, image):
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        node_net = CNN.Net().to(device)
+        node_net = CNN1.Net().to(device)
         node_net.load_state_dict(torch.load(self.PATH))
         node_output = node_net(image)
         _, node_predicted = torch.max(node_output.data, 1)

@@ -1,7 +1,7 @@
 import torch
 import torch.optim as optim
 import torch.nn as nn
-import CNN
+import CNN1
 
 
 def train(train_set, PATH, num_epochs):
@@ -12,7 +12,7 @@ def train(train_set, PATH, num_epochs):
     learning_rate = 0.001
     momentum = 0.9
 
-    net = CNN.Net().to(device)
+    net = CNN1.Net().to(device)
 
     train_loader = torch.utils.data.DataLoader(train_set, shuffle=True, batch_size=batch_size, num_workers=num_workers)
 

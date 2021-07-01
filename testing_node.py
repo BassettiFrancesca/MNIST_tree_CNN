@@ -1,5 +1,5 @@
 import torch
-import CNN
+import CNN1
 
 
 def test(node):
@@ -8,7 +8,7 @@ def test(node):
 
     test_loader = torch.utils.data.DataLoader(node.test_set, shuffle=False, num_workers=2)
 
-    net = CNN.Net().to(device)
+    net = CNN1.Net().to(device)
     net.load_state_dict(torch.load(node.PATH))
 
     correct = 0

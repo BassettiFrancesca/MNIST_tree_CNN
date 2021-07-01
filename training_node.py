@@ -1,7 +1,7 @@
 import torch
 import torch.optim as optim
 import torch.nn as nn
-import CNN
+import CNN1
 
 
 def train(node, num_epochs):
@@ -10,7 +10,7 @@ def train(node, num_epochs):
     learning_rate = 0.001
     momentum = 0.9
 
-    net = CNN.Net().to(device)
+    net = CNN1.Net().to(device)
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=momentum)
